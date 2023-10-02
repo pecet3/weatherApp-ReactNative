@@ -33,7 +33,7 @@ const CurrentWeather = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#d3d3d3',
+    backgroundColor: '#61c3f4',
     flex: 1,
     alignItems: 'center',
     gap: 8
@@ -41,10 +41,10 @@ const styles = StyleSheet.create({
   tempContainer: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 24
+    marginTop: 192
   },
   bottomContainer: {
-    backgroundColor: '#898989',
+    backgroundColor: '#7ea8fb',
     padding: 2,
     alignItems: 'center'
   },
