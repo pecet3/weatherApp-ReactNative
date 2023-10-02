@@ -11,14 +11,14 @@ const CurrentWeather = () => {
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
         <Text style={styles.largeText}>Current weather</Text>
-        <Feather name="sun" size={32} color="black" />
-        <Text style={styles.mediumText}>Temperature:{temperature}</Text>
-        <Text style={(styles.smallText, { color: '#1c89dc' })}>
-          Feels like: {feelTemperature}
-        </Text>
-        <View style={styles.rowContainer}>
-          <Text style={styles.smallText}>max:{maxTemperature}</Text>
-          <Text style={styles.smallText}>min:{minTemperature}</Text>
+        <View style={styles.tempContainer}>
+          <Feather name="sun" size={64} color="black" />
+          <Text style={styles.largeText}>Temperature: {temperature}</Text>
+          <Text style={styles.mediumText}>Feels like: {feelTemperature}</Text>
+          <View style={styles.rowContainer}>
+            <Text style={styles.smallText}>max:{maxTemperature}</Text>
+            <Text style={styles.smallText}>min:{minTemperature}</Text>
+          </View>
         </View>
       </View>
       <View style={styles.bottomContainer}>
@@ -38,6 +38,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8
   },
+  tempContainer: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: 24
+  },
   bottomContainer: {
     backgroundColor: '#898989',
     padding: 2,
@@ -49,16 +54,17 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    paddingTop: 30
+    paddingTop: 30,
+    justifyContent: 'center'
   },
   largeText: {
-    fontSize: 26
+    fontSize: 32
   },
   mediumText: {
-    fontSize: 20
+    fontSize: 24
   },
   smallText: {
-    fontSize: 16
+    fontSize: 20
   }
 })
 export default CurrentWeather
