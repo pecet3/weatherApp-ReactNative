@@ -1,5 +1,14 @@
 import React from 'react'
-import { SafeAreaView, View, Text, FlatList } from 'react-native'
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  StatusBar,
+  ImageBackground
+} from 'react-native'
+
 const weatherData = [
   {
     date: '2023-10-02',
@@ -17,6 +26,20 @@ const weatherData = [
     cloudiness: 'Deszczowo'
   }
 ]
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: '#c4edfb'
+  },
+  image: {
+    height: 100,
+    width: '100%'
+  }
+})
 type Item = {
   date: string
   temperature: number
@@ -25,10 +48,18 @@ type Item = {
 const Item = (props: Item) => {
   const { date, temperature, cloudiness } = props
   return (
-    <View>
-      <Text>{date}</Text>
-      <Text>{temperature}</Text>
+    <View style={styles.container}>
+      <Text>{date} //</Text>
+      <Text>Temperature: {temperature} //</Text>
       <Text>{cloudiness}</Text>
+    </View>
+  )
+}
+
+const Empty = () => {
+  return (
+    <View>
+      <Text>There's nothing to show</Text>
     </View>
   )
 }
@@ -43,7 +74,20 @@ const UpcommingWeather = () => {
   )
   return (
     <SafeAreaView>
-      <FlatList data={weatherData} renderItem={render} />
+      <ImageBackground
+        source={require('../assets/clouds.jpg')}
+        style={styles.image}
+      >
+        <FlatList
+          data={weatherData}
+          renderItem={render}
+          keyExtractor={(item) => item.date}
+          ItemSeparatorComponent={() => (
+            <View style={{ backgroundColor: '#53ffdd', height: 1 }} />
+          )}
+          ListEmptyComponent={() => <Empty />}
+        />
+      </ImageBackground>
     </SafeAreaView>
   )
 }
