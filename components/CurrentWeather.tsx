@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  ImageBackground
+} from 'react-native'
 import { Feather } from '@expo/vector-icons'
 
 const CurrentWeather = () => {
@@ -9,18 +15,24 @@ const CurrentWeather = () => {
   const [minTemperature, setMinTemperature] = useState(4)
   return (
     <SafeAreaView style={styles.wrapper}>
-      <View style={styles.container}>
-        <Text style={styles.largeText}>Current weather</Text>
-        <View style={styles.tempContainer}>
-          <Feather name="sun" size={64} color="black" />
-          <Text style={styles.largeText}>Temperature: {temperature}</Text>
-          <Text style={styles.mediumText}>Feels like: {feelTemperature}</Text>
-          <View style={styles.rowContainer}>
-            <Text style={styles.smallText}>max:{maxTemperature}</Text>
-            <Text style={styles.smallText}>min:{minTemperature}</Text>
+      <ImageBackground
+        source={require('../assets/cloudsa.jpg')}
+        style={styles.image}
+      >
+        <View style={styles.container}>
+          <Text style={styles.largeText}>Current weather</Text>
+          <View style={styles.tempContainer}>
+            <Feather name="sun" size={64} color="black" />
+            <Text style={styles.largeText}>Temperature: {temperature}</Text>
+            <Text style={styles.mediumText}>Feels like: {feelTemperature}</Text>
+            <View style={styles.rowContainer}>
+              <Text style={styles.smallText}>max:{maxTemperature}</Text>
+              <Text style={styles.smallText}>min:{minTemperature}</Text>
+            </View>
           </View>
         </View>
-      </View>
+      </ImageBackground>
+
       <View style={styles.bottomContainer}>
         <Text style={styles.largeText}>It's Sunny</Text>
         <Text style={styles.mediumText}>
@@ -65,6 +77,10 @@ const styles = StyleSheet.create({
   },
   smallText: {
     fontSize: 20
+  },
+  image: {
+    height: '100%',
+    width: '100%'
   }
 })
 export default CurrentWeather
