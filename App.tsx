@@ -1,22 +1,50 @@
-import React, { useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { NavigationContainer } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
-import CurrentWeather from './components/CurrentWeather'
-import UpcommingWeather from './components/UpcommingWeather'
+import CurrentWeather from './screens/CurrentWeather'
+import UpcomingWeather from './screens/UpcomingWeather'
+import City from './screens/City'
+
+const Tab = createBottomTabNavigator()
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <CurrentWeather />
-      <UpcommingWeather />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Current Weather"
+          component={CurrentWeather}
+          options={{
+            tabBarLabel: 'Current Weather',
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="sun" size={size} color={color} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="Upcoming Weather"
+          component={UpcomingWeather}
+          options={{
+            tabBarLabel: 'Upcoming Weather',
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="calendar" size={size} color={color} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="City"
+          component={City}
+          options={{
+            tabBarLabel: 'City',
+            tabBarIcon: ({ color, size }) => (
+              <Feather name="map-pin" size={size} color={color} />
+            )
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-})
 
 export default App
