@@ -1,4 +1,5 @@
 import React from 'react'
+import { ListItem, type Item } from '../components/ListItem'
 import {
   SafeAreaView,
   View,
@@ -24,6 +25,36 @@ const weatherData = [
     date: '2023-10-04',
     temperature: 18,
     cloudiness: 'Deszczowo'
+  },
+  {
+    date: '2023-10-02',
+    temperature: 25,
+    cloudiness: 'Słonecznie'
+  },
+  {
+    date: '2023-10-03',
+    temperature: 20,
+    cloudiness: 'Pochmurno'
+  },
+  {
+    date: '2023-10-04',
+    temperature: 18,
+    cloudiness: 'Deszczowo'
+  },
+  {
+    date: '2023-10-02',
+    temperature: 25,
+    cloudiness: 'Słonecznie'
+  },
+  {
+    date: '2023-10-03',
+    temperature: 20,
+    cloudiness: 'Pochmurno'
+  },
+  {
+    date: '2023-10-04',
+    temperature: 18,
+    cloudiness: 'Deszczowo'
   }
 ]
 
@@ -33,28 +64,12 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#c4edfb'
-  },
-  image: {
-    height: 100,
+    backgroundColor: '#c4edfb',
+    height: '100%',
     width: '100%'
-  }
+  },
+  image: {}
 })
-type Item = {
-  date: string
-  temperature: number
-  cloudiness: string
-}
-const Item = (props: Item) => {
-  const { date, temperature, cloudiness } = props
-  return (
-    <View style={styles.container}>
-      <Text>{date} //</Text>
-      <Text>Temperature: {temperature} //</Text>
-      <Text>{cloudiness}</Text>
-    </View>
-  )
-}
 
 const Empty = () => {
   return (
@@ -64,16 +79,16 @@ const Empty = () => {
   )
 }
 
-const UpcommingWeather = () => {
+const UpcomingWeather = () => {
   const render = ({ item }: { item: Item }) => (
-    <Item
+    <ListItem
       date={item.date}
       temperature={item.temperature}
       cloudiness={item.cloudiness}
     />
   )
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <ImageBackground
         source={require('../assets/cloudsa.jpg')}
         style={styles.image}
@@ -83,7 +98,7 @@ const UpcommingWeather = () => {
           renderItem={render}
           keyExtractor={(item) => item.date}
           ItemSeparatorComponent={() => (
-            <View style={{ backgroundColor: '#53ffdd', height: 1 }} />
+            <View style={{ backgroundColor: 'transparent', height: 24 }} />
           )}
           ListEmptyComponent={() => <Empty />}
         />
@@ -91,4 +106,4 @@ const UpcommingWeather = () => {
     </SafeAreaView>
   )
 }
-export default UpcommingWeather
+export default UpcomingWeather

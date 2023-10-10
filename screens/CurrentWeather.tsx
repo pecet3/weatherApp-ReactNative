@@ -7,6 +7,7 @@ import {
   ImageBackground
 } from 'react-native'
 import { Feather } from '@expo/vector-icons'
+import { ListItem } from '../components/ListItem'
 
 const CurrentWeather = () => {
   const [temperature, setTemperature] = useState(6)
@@ -16,11 +17,10 @@ const CurrentWeather = () => {
   return (
     <SafeAreaView style={styles.wrapper}>
       <ImageBackground
-        source={require('../assets/cloudsa.jpg')}
-        style={styles.image}
+        source={require('../assets/mountain.jpg')}
+        style={styles.container}
       >
         <View style={styles.container}>
-          <Text style={styles.largeText}>Current weather</Text>
           <View style={styles.tempContainer}>
             <Feather name="sun" size={64} color="black" />
             <Text style={styles.largeText}>Temperature: {temperature}</Text>
@@ -31,29 +31,32 @@ const CurrentWeather = () => {
             </View>
           </View>
         </View>
-      </ImageBackground>
 
-      <View style={styles.bottomContainer}>
-        <Text style={styles.largeText}>It's Sunny</Text>
-        <Text style={styles.mediumText}>
-          You can wear a hoodie and bring some jacket with you
-        </Text>
-      </View>
+        <View style={styles.bottomContainer}>
+          <Text style={styles.largeText}>It's Sunny</Text>
+          <Text style={styles.mediumText}>
+            You can wear a hoodie and bring some jacket with you
+          </Text>
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#61c3f4',
     flex: 1,
-    alignItems: 'center',
-    gap: 8
+    backgroundColor: '#ffffff61'
   },
   tempContainer: {
     flex: 1,
     alignItems: 'center',
-    marginTop: 192
+    justifyContent: 'center',
+    margin: 'auto',
+    height: 100
+  },
+  rounded: {
+    backgroundColor: '#fff'
   },
   bottomContainer: {
     backgroundColor: '#7ea8fb',
@@ -66,7 +69,6 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flex: 1,
-    paddingTop: 30,
     justifyContent: 'center'
   },
   largeText: {
@@ -79,8 +81,8 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   image: {
-    height: '100%',
-    width: '100%'
+    height: 600,
+    width: 200
   }
 })
 export default CurrentWeather
